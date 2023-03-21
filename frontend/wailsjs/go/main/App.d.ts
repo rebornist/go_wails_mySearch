@@ -3,6 +3,8 @@
 
 export function ChatGPT(arg1:string):Promise<string>;
 
+export function GoogleSearch(arg1:string):Promise<string>;
+
 export function GoogleTranslate(arg1:string,arg2:string):Promise<string>;
 
 export function Greet(arg1:string):Promise<string>;

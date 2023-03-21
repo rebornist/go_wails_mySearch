@@ -19,10 +19,21 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100..900&family=Space+Mono:ital@0;1&display=swap" rel="stylesheet">
 
+    <!-- Core Css Quill editor-->
+    <link href="assets/vendor/css/quill.snow.css" rel="stylesheet">
+
     <!--Main style-->
     <link rel="stylesheet" href="assets/css/style.min.css" id="switchThemeStyle">
 </head>
 <body>
+    <div id="loader" class="loader d-none" style="background-color:rgba(0,0,0,.5);">
+        <div class="d-flex flex-column flex-root">
+            <div class="w-100 h-100 position-relative d-flex align-items-center justify-content-center">
+                <img src="assets/images/loader.svg" alt="로딩 이미지..."/>
+            </div>
+        </div>
+    </div>
+
     <div class="d-flex flex-column flex-root" id="root"></div>
     <script src="./src/main.tsx" type="module"></script>
 
@@ -30,8 +41,10 @@
     <script src="assets/js/theme.bundle.js"></script>
 
     <script>
-        feather.replace()
+        feather.replace();
     </script>
+
+
 </body>
 </html>
 

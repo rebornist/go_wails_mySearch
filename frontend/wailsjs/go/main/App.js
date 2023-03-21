@@ -6,6 +6,10 @@ export function ChatGPT(arg1) {
   return window['go']['main']['App']['ChatGPT'](arg1);
 }
 
+export function GoogleSearch(arg1) {
+  return window['go']['main']['App']['GoogleSearch'](arg1);
+}
+
 export function GoogleTranslate(arg1, arg2) {
   return window['go']['main']['App']['GoogleTranslate'](arg1, arg2);
 }

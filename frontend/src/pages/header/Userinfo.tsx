@@ -10,10 +10,10 @@ export default function Userinfo() {
                 <div className="d-flex align-items-center">
 
                     <div className="avatar-status status-online me-sm-2 avatar xs">
-                        <img src="assets/media/avatars/01.jpg" className="rounded-circle img-fluid"
+                        <img src="assets/media/icons/search-icon.jpg" className="rounded-circle img-fluid"
                              alt=""/>
                     </div>
-                    <span className="d-none d-md-inline-block">Noah</span>
+                    <span className="d-none d-md-inline-block">Yusol's father</span>
                 </div>
             </a>
             <div className="dropdown-menu mt-0 p-0 dropdown-menu-end overflow-hidden">

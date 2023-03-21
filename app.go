@@ -1,10 +1,11 @@
 package main
 
 import (
+	"changeme/backend/api/chatgpt"
+	"changeme/backend/api/gsearch"
 	"context"
 	"fmt"
 
-	"changeme/backend/api/chatgpt"
 	"changeme/backend/api/gtranslate"
 )
 
@@ -37,4 +38,9 @@ func (a *App) ChatGPT(message string) string {
 // GoogleTranslate Google 번역기 API
 func (a *App) GoogleTranslate(targetLanguage, text string) string {
 	return gtranslate.GTranslateAPIController(targetLanguage, text)
+}
+
+// Google Search API
+func (a *App) GoogleSearch(message string) string {
+	return gsearch.GSearchController(message)
 }
