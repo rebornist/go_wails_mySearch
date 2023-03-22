@@ -3,6 +3,8 @@ import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import ReactQuill from "react-quill";
 
+import icon from "../assets/images/search-icon.jpg";
+
 type Props = {
     data: any[]
 }
@@ -17,7 +19,7 @@ function SearchResultItem(p: ItemProps) {
         <div className="list-group-item p-4 list-group-item-action">
             <div className="d-flex align-items-center">
 
-                <img src="assets/media/icons/search-icon.jpg" className="flex-shrink-0 rounded-3 width-60" alt=""/>
+                <img src={icon} className="flex-shrink-0 rounded-3 width-60" alt=""/>
                 <div className="ps-3 flex-grow-1 overflow-hidden text-secondary">
                     {(p.link) &&
                         <a href={p.link} target={"_blank"} className="text-decoration-none text-dark">

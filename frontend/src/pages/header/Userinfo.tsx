@@ -1,5 +1,7 @@
 import React from 'react';
 
+import icon from '../../assets/images/search-icon.jpg';
+
 
 export default function Userinfo() {
     return (
@@ -10,7 +12,7 @@ export default function Userinfo() {
                 <div className="d-flex align-items-center">
 
                     <div className="avatar-status status-online me-sm-2 avatar xs">
-                        <img src="assets/media/icons/search-icon.jpg" className="rounded-circle img-fluid"
+                        <img src={icon} className="rounded-circle img-fluid"
                              alt=""/>
                     </div>
                     <span className="d-none d-md-inline-block">Yusol's father</span>
