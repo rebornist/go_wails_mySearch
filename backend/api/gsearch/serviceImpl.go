@@ -2,20 +2,19 @@ package gsearch
 
 import (
 	"bytes"
+	"changeme/backend/api/dto"
+	res "changeme/backend/api/web/response"
 	"encoding/json"
-	"fmt"
 	"net/http"
 )
 
-func (g *GSearchRequest) GSearchAPI(message string) (string, error) {
-
+func (g *GSearchRequest) GSearchAPI(message string) res.Response {
 	var responseData GSearchResponse
 
 	// API 요청을 생성
 	req, err := http.NewRequest("GET", g.URL, nil)
 	if err != nil {
-		fmt.Println("Error creating request:", err)
-		return "", err
+		return res.CommErrorResponse(err)
 	}
 	req.Header.Set("Content-Type", "application/json")
 
@@ -31,44 +30,42 @@ func (g *GSearchRequest) GSearchAPI(message string) (string, error) {
 
 	// API 호출 실행
 	client := &http.Client{}
-	response, err := client.Do(req)
+	respApi, err := client.Do(req)
 	if err != nil {
-		fmt.Println("Error calling API:", err)
-		return "", err
+		return res.CommErrorResponse(err)
 	}
-	defer response.Body.Close()
+	defer respApi.Body.Close()
 
 	// API 응답 불러오기
 	var buf bytes.Buffer
-	_, err = buf.ReadFrom(response.Body)
+	_, err = buf.ReadFrom(respApi.Body)
 	if err != nil {
-		fmt.Println("Error reading response:", err)
-		return "", err
+		return res.CommErrorResponse(err)
 	}
 
 	// API 응답을 JSON으로 파싱
 	err = json.Unmarshal(buf.Bytes(), &responseData)
 	if err != nil {
-		fmt.Println("Error unmarshalling response:", err)
-		return "", err
+		return res.CommErrorResponse(err)
 	}
 
-	// API 응답 중 필요한 부분만 추출하여 JSON 변환.
-	var respJson []map[string]string
+	// API 응답 중 필요한 부분만 추출하여 []string 변환.
+	var respJson []string
 	for _, item := range responseData.Items {
-		respJsonItem := make(map[string]string)
-		respJsonItem["title"] = item.Title
-		respJsonItem["link"] = item.Link
-		respJsonItem["snippet"] = item.Snippet
-		respJson = append(respJson, respJsonItem)
+
+		var dto dto.SearchDto
+		dto.Title = item.Title
+		dto.Link = item.Link
+		dto.Content = item.Snippet
+
+		// JSON 변환된 API 응답을 출력합니다.
+		jsonStr, err := json.Marshal(dto)
+		if err != nil {
+			return res.CommErrorResponse(err)
+		}
+
+		respJson = append(respJson, string(jsonStr))
 	}
 
-	// JSON 변환된 API 응답을 출력합니다.
-	jsonStr, err := json.Marshal(respJson)
-	if err != nil {
-		fmt.Println("Error marshalling response:", err)
-		return "", err
-	}
-
-	return string(jsonStr), nil
+	return res.CommSuccessResponse(respJson)
 }

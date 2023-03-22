@@ -1,5 +1,9 @@
 package gtranslate
 
+import (
+	"changeme/backend/api/web/response"
+)
+
 type GTranslateService interface {
-	GTranslateAPI(string, string) (string, error)
+	GTranslateAPI(string, string) (response.Response, error)
 }
