@@ -17,18 +17,26 @@ export default function Search() {
 
 
     function gpt() {
-        new Controller(target, ChatGPT(search).then(updateResultText));
+        if (search) {
+            new Controller(target, ChatGPT(search).then(updateResultText));
+        }
     }
 
     function koToEnTranslate() {
-        new Controller(target, GoogleTranslate('en', search).then(updateResultText));
+        if (search) {
+            new Controller(target, GoogleTranslate('en', search).then(updateResultText));
+        }
     }
     function enToKoTranslate() {
-        new Controller(target, GoogleTranslate('ko', search).then(updateResultText));
+        if (search) {
+            new Controller(target, GoogleTranslate('ko', search).then(updateResultText));
+        }
     }
 
     function gSearch() {
-        new Controller(target, GoogleSearch(search).then(updateResultText));
+        if (search) {
+            new Controller(target, GoogleSearch(search).then(updateResultText));
+        }
     }
 
     const updateResultText = (result: string) => {
@@ -55,7 +63,6 @@ export default function Search() {
                     </div>
                 </div>
             </div>
-            (searchType) &&
             <div className="mx-5">
                 {resultText}
             </div>
