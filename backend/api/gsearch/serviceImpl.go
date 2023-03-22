@@ -23,6 +23,7 @@ func (g *GSearchRequest) GSearchAPI(message string) res.Response {
 	q.Add("q", message)
 	q.Add("num", "10")
 	q.Add("start", "1")
+	q.Add("gl", "kr")
 	q.Add("key", g.Key)
 	q.Add("cx", g.CX)
 
